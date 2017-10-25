@@ -10,6 +10,8 @@ var _toCamelCase2 = _interopRequireDefault(_toCamelCase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var transforms = {
   'float': 'cssFloat'
 };
@@ -45,7 +47,8 @@ function all(element, css) {
  */
 function style(element) {
   if (arguments.length === 3) {
-    return one(element, arguments[1], arguments[2]);
+    var rollback = one(element, arguments[1], arguments[2]);
+    return _defineProperty({}, arguments[1], rollback);
   }
 
   return all(element, arguments[1]);

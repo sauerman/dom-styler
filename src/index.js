@@ -22,10 +22,10 @@ function all(element, css) {
   let rollback = {};
 
   Object
-  .keys(css)
-  .forEach((key) => {
-    rollback[key] = one(element, key, css[key]);
-  });
+    .keys(css)
+    .forEach((key) => {
+      rollback[key] = one(element, key, css[key]);
+    });
 
   return rollback;
 }
@@ -37,7 +37,10 @@ function all(element, css) {
  */
 function style(element) {
   if (arguments.length === 3) {
-    return one(element, arguments[1], arguments[2]);
+    let rollback = one(element, arguments[1], arguments[2]);
+    return {
+      [arguments[1]]: rollback
+    };
   }
 
   return all(element, arguments[1]);
